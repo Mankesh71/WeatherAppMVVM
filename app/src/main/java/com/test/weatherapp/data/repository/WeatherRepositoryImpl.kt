@@ -48,7 +48,7 @@ class WeatherRepositoryImpl(
     }
 
     private suspend fun initWeatherData() {
-        val lastWeatherLocation = weatherLocationDao.getWeatherLocation().value
+        val lastWeatherLocation = weatherLocationDao.getWeatherLocationNonLive()
         if (lastWeatherLocation == null || locationProvider.hasLocationChanged(lastWeatherLocation = lastWeatherLocation)) {
             fetchCurrentWeatherData()
             return

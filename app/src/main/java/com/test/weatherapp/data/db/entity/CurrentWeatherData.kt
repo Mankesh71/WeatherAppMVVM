@@ -28,17 +28,23 @@ data class CurrentWeatherData(
     @SerializedName("wind_dir")
     val windDirection: String?,
     @SerializedName("wind_speed")
-    val windSpeed: Double
+    val windSpeed: Double,
+    @SerializedName("weather_descriptions")
+    val weatherDescription: List<String>,
+    @SerializedName("weather_icons")
+    val weatherIcons: List<String>
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = CURRENT_WEATHER_ID
 }
 
-class ListTypeConverters {
+object ListTypeConverters {
 
     @TypeConverter
-    fun listToJson(value: List<String>?) = Gson().toJson(value)
+    @JvmStatic
+    fun listToJson(value: List<String>?) = Gson().toJson(value)!!
 
     @TypeConverter
+    @JvmStatic
     fun jsonToList(value: String) = Gson().fromJson(value, Array<String>::class.java).toList()
 }

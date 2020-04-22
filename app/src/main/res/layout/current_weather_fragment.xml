@@ -86,8 +86,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.207"
         app:layout_constraintWidth_percent="0.25"
-        tools:src="@drawable/ic_today_black"
-        tools:tint="#f9a920" />
+        tools:src="@drawable/ic_today_black"/>
 
     <TextView
         android:id="@+id/textView_temperature"

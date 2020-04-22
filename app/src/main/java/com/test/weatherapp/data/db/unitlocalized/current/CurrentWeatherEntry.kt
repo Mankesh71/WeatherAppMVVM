@@ -9,6 +9,8 @@ class CurrentWeatherEntry(
     override val windSpeed: Double,
     @ColumnInfo(name = "windDirection")
     override val windDirection: String?,
+    @ColumnInfo(name = "observationTime")
+    override val observationTime: String?,
     @ColumnInfo(name = "precip")
     override val precipitationVolume: Double,
     @ColumnInfo(name = "feelsLike")
@@ -20,5 +22,9 @@ class CurrentWeatherEntry(
     @ColumnInfo(name = "pressure")
     override val pressure: Double,
     @ColumnInfo(name = "humidity")
-    override val humidity: Double
+    override val humidity: Double,
+    @ColumnInfo(name = "weatherDescription")
+    override val weatherDescription: String?,
+    @ColumnInfo(name = "weatherIcons")
+    override val weatherIcons: String?
 ) : UnitSpecificCurrentWeatherEntry

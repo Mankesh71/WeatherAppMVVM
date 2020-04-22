@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.test.weatherapp.R
+import com.test.weatherapp.data.db.entity.ListTypeConverters
+import com.test.weatherapp.data.internal.glide.GlideApp
 import com.test.weatherapp.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.launch
@@ -53,6 +55,10 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
                 updateWind(windDirection = "", windSpeed = it.windSpeed)
             }
             updateVisibility(visibility = it.visibilityDistance, uvIndex = it.uvIndex)
+            if (it.weatherDescription != null)
+                updateCondition(condition = ListTypeConverters.jsonToList(it.weatherDescription!!)[0])
+            if (it.weatherIcons != null)
+                updateWeatherIcon(iconUrl = ListTypeConverters.jsonToList(it.weatherIcons!!)[0])
         })
 
         val weatherLocation = viewModel.weatherLocation.await()
@@ -92,6 +98,15 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun updateVisibility(visibility: Double, uvIndex: Double) {
         textView_visibility.text = "Visibility: - $visibility km\nUV Index $uvIndex"
+    }
+
+    private fun updateWeatherIcon(iconUrl: String) {
+        var url = iconUrl
+        if (!url.contains("http"))
+            url = "http:$url"
+        GlideApp.with(this)
+            .load(url)
+            .into(imageView_condition_icon)
     }
 
 }

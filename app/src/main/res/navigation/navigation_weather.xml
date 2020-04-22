@@ -9,18 +9,26 @@
     <fragment
         android:id="@+id/currentWeatherFragment"
         android:name="com.test.weatherapp.ui.weather.current.CurrentWeatherFragment"
-        android:label="current_weather_fragment"
+        android:label="@string/app_name"
         tools:layout="@layout/current_weather_fragment" />
     <fragment
         android:id="@+id/futureWeatherFragment"
         android:name="com.test.weatherapp.ui.weather.future.list.FutureWeatherFragment"
-        android:label="future_weather_fragment"
-        tools:layout="@layout/future_weather_fragment" />
+        android:label="@string/app_name"
+        tools:layout="@layout/future_weather_fragment" >
+        <action
+            android:id="@+id/actionDetail"
+            app:destination="@id/futureWeatherDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/futureWeatherDetailFragment"
         android:name="com.test.weatherapp.ui.weather.future.detail.FutureWeatherDetailFragment"
         android:label="future_weather_detail_fragment"
-        tools:layout="@layout/future_weather_detail_fragment" />
+        tools:layout="@layout/future_weather_detail_fragment" >
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.test.weatherapp.ui.setting.SettingsFragment"

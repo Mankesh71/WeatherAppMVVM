@@ -13,6 +13,8 @@ import com.test.weatherapp.data.provider.UnitProviderImpl
 import com.test.weatherapp.data.repository.WeatherRepository
 import com.test.weatherapp.data.repository.WeatherRepositoryImpl
 import com.test.weatherapp.ui.weather.current.CurrentWeatherViewModelProvider
+import com.test.weatherapp.ui.weather.future.detail.FutureWeatherDetailViewModelProvider
+import com.test.weatherapp.ui.weather.future.list.FutureWeatherViewModelProvider
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -44,6 +46,8 @@ class WeatherAppApplication : Application(), KodeinAware {
         }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelProvider(instance(), instance()) }
+        bind() from provider { FutureWeatherViewModelProvider(instance(), instance()) }
+        bind() from provider { FutureWeatherDetailViewModelProvider(instance(), instance()) }
     }
 
     override fun onCreate() {
